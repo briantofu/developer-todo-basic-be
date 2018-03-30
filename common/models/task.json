@@ -1,0 +1,69 @@
+{
+  "name": "Task",
+  "plural": "tasks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "todo_tasks"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "mysql": {
+        "columnName": "id"
+      }
+    },
+    "description": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "description"
+      }
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "status"
+      }
+    },
+    "createdBy": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "created_by"
+      }
+    },
+    "assignedTo": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "assigned_to"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "createdBy": {
+      "type": "belongsTo",
+      "model": "Employee",
+      "foreignKey": "createdBy"
+    },
+    "assignedTo": {
+      "type": "belongsTo",
+      "model": "Employee",
+      "foreignKey": "assignedTo"
+    },
+    "logs": {
+      "type": "hasMany",
+      "model": "Log",
+      "foreignKey": "taskId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

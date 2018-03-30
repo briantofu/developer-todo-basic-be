@@ -1,0 +1,60 @@
+{
+  "name": "Log",
+  "plural": "logs",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "todo_logs"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "mysql": {
+        "columnName": "id"
+      }
+    },
+    "description": {
+      "type": "string",
+      "required": true,
+      "length": 255,
+      "mysql": {
+        "columnName": "description"
+      }
+    },
+    "startDate": {
+      "type": "date",
+      "required": true,
+      "default": "now",
+      "mysql": {
+        "columnName": "start_date"
+      }
+    },
+    "endDate": {
+      "type": "date",
+      "mysql": {
+        "columnName": "end_date"
+      }
+    },
+    "taskId": {
+      "type": "number",
+      "id": true,
+      "mysql": {
+        "columnName": "task_id"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "task": {
+      "type": "belongsTo",
+      "model": "Task",
+      "foreignKey": "taskId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

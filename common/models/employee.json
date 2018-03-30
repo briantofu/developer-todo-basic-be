@@ -1,0 +1,76 @@
+{
+  "name": "Employee",
+  "plural": "employees",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "todo_employees"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "mysql": {
+        "columnName": "id"
+      }
+    },
+    "firstName": {
+      "type": "string",
+      "required": true,
+      "length": 45,
+      "mysql": {
+        "columnName": "first_name"
+      }
+    },
+    "lastName": {
+      "type": "string",
+      "required": true,
+      "length": 45,
+      "mysql": {
+        "columnName": "last_name"
+      }
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "length": 45,
+      "mysql": {
+        "columnName": "role"
+      }
+    },
+    "startDate": {
+      "type": "date",
+      "required": true,
+      "default": "$now",
+      "mysql": {
+        "columnName": "start_date"
+      }
+    },
+    "password": {
+      "type": "string",
+      "mysql": {
+        "columnName": "password"
+      }
+    }
+  },
+  "hidden": ["password"],
+  "protected": ["password","startDate"],
+  "validations": [],
+  "relations": {
+    "createdTasks": {
+      "type": "hasMany",
+      "model": "Task",
+      "foreignKey": "createdBy"
+    },
+    "assignedTasks": {
+      "type": "hasMany",
+      "model": "Task",
+      "foreignKey": "assignedTo"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

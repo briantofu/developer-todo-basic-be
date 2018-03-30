@@ -1,0 +1,12 @@
+{
+  "mysqlDB": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "mysql://root:password@localhost:3306/dev-todo",
+    "database": "dev-todo",
+    "password": "password",
+    "name": "mysqlDB",
+    "user": "root",
+    "connector": "mysql"
+  }
+}
