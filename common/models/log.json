@@ -25,31 +25,27 @@
         "columnName": "description"
       }
     },
-    "startDate": {
+    "date": {
       "type": "date",
       "required": true,
-      "default": "now",
+      "default": "$now",
       "mysql": {
-        "columnName": "start_date"
-      }
-    },
-    "endDate": {
-      "type": "date",
-      "mysql": {
-        "columnName": "end_date"
+        "columnName": "date_log"
       }
     },
     "taskId": {
       "type": "number",
       "id": true,
       "mysql": {
-        "columnName": "task_id"
+        "columnName": "for_task"
       }
     }
   },
   "mixins": {
     "ReadOnly" : {
-      "id" : true
+      "id" : true,
+      "date": true,
+      "taskId": true
     }
   },
   "validations": [],

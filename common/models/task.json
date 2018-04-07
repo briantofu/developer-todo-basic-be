@@ -49,7 +49,8 @@
   "mixins": {
     "ReadOnly" : {
       "id" : true,
-      "creator": true
+      "creator": true,
+      "status": true
     }
   },
   "validations": [],

@@ -16,4 +16,34 @@ module.exports = function(Log) {
 
     Log.disableRemoteMethodByName('prototype.__create__task');
     Log.disableRemoteMethodByName('prototype.__get__task');
+
+    /**
+     * Update Task status if still on queue
+     */
+    Log.observe('after save', function updateStatus(ctx, next) {
+        var taskId = ctx.instance.taskId;
+
+        Log.app.models.Task.findById(taskId, function(err, referredTask){
+            if(referredTask && 'ON QUEUE' == referredTask.status){
+                referredTask.updateAttributes({status: 'IN PROGRESS'}, function(err, instance){
+                    if(err) {
+                        next(wrapInternalError(ctx.instance.id, err));
+                    } else {
+                        console.log('Task '+taskId+' has been set to '+instance.status+' err?: '+err);
+                        next();
+                    }    
+                })
+            }else next();
+        });
+    });
+
 };
+
+function wrapInternalError(triggeringLog, owningTaskErr){
+    var definedErr = new Error();
+    definedErr.name = "Invalid owning task."
+    definedErr.message = "Task to which log "+triggeringLog+" is attached has has errors. "+
+    "Details are: "+owningTaskErr.message;
+    definedErr.status = 500;
+    return definedErr;
+}
