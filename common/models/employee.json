@@ -56,6 +56,12 @@
       }
     }
   },
+  "mixins": {
+    "ReadOnly" : {
+      "startDate" : true,
+      "id" : true
+    }
+  },
   "hidden": ["password"],
   "protected": ["password","startDate"],
   "validations": [],
@@ -63,12 +69,12 @@
     "createdTasks": {
       "type": "hasMany",
       "model": "Task",
-      "foreignKey": "createdBy"
+      "foreignKey": "creator"
     },
     "assignedTasks": {
       "type": "hasMany",
       "model": "Task",
-      "foreignKey": "assignedTo"
+      "foreignKey": "assignee"
     }
   },
   "acls": [],

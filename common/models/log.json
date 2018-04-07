@@ -47,6 +47,11 @@
       }
     }
   },
+  "mixins": {
+    "ReadOnly" : {
+      "id" : true
+    }
+  },
   "validations": [],
   "relations": {
     "task": {

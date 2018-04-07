@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function(Log) {
+    Log.disableRemoteMethodByName('create');
     Log.disableRemoteMethodByName('exists');
     Log.disableRemoteMethodByName('patchOrCreate');
     Log.disableRemoteMethodByName('createChangeStream');
@@ -8,8 +9,6 @@ module.exports = function(Log) {
     Log.disableRemoteMethodByName('updateAll');
     Log.disableRemoteMethodByName('replaceOrCreate');
     Log.disableRemoteMethodByName('upsertWithWhere');
-    Log.disableRemoteMethodByName('create');
-
     Log.disableRemoteMethodByName('find');
     Log.disableRemoteMethodByName('findById');
     Log.disableRemoteMethodByName('findOne');

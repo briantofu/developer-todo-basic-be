@@ -31,14 +31,14 @@
         "columnName": "status"
       }
     },
-    "createdBy": {
+    "creator": {
       "type": "number",
       "required": true,
       "mysql": {
         "columnName": "created_by"
       }
     },
-    "assignedTo": {
+    "assignee": {
       "type": "number",
       "required": true,
       "mysql": {
@@ -46,17 +46,24 @@
       }
     }
   },
+  "mixins": {
+    "ReadOnly" : {
+      "id" : true,
+      "creator": true
+    }
+  },
   "validations": [],
+  "hidden": ["createdBy", "assignedTo"],
   "relations": {
     "createdBy": {
       "type": "belongsTo",
       "model": "Employee",
-      "foreignKey": "createdBy"
+      "foreignKey": "creator"
     },
     "assignedTo": {
       "type": "belongsTo",
       "model": "Employee",
-      "foreignKey": "assignedTo"
+      "foreignKey": "assignee"
     },
     "logs": {
       "type": "hasMany",
