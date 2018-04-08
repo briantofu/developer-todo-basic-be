@@ -56,7 +56,7 @@ module.exports = function(Employee) {
                 if(password !== principal.password)
                     next(createInvalidUserError());
                 else
-                    next();
+                    next(null, {userId: principal.id, role: principal.role});
             }else 
                 next(createInvalidUserError());
         });
@@ -68,6 +68,7 @@ module.exports = function(Employee) {
             {arg: 'username', type: 'string', required: true},
             {arg: 'password', type: 'string', http: {source: 'form'}, required: true}
         ],
+        returns: {arg: 'authUser', type: 'object'},
         http: {verb: "post", path: "/:username/credential", status: 200}
     });
 };
