@@ -27,7 +27,6 @@ module.exports = function(Task) {
         next();
     });
 
-
     /**
      * Registering custom endpoints (in loopback: remote methods)
      * 
@@ -74,6 +73,9 @@ module.exports = function(Task) {
      * 
      * 'app' can be obtained from model once it's attached
      * see https://loopback.io/doc/en/lb3/Working-with-LoopBack-objects.html
+     * 
+     * To do queries or sql operations against models
+     * see: https://apidocs.strongloop.com/loopback/#persistedmodel
      * 
      * @param {*} errFn - function
      * @param {*} next - function

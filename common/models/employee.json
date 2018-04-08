@@ -54,12 +54,20 @@
       "mysql": {
         "columnName": "password"
       }
+    },
+    "username": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "username"
+      }
     }
   },
   "mixins": {
     "ReadOnly" : {
       "startDate" : true,
-      "id" : true
+      "id" : true,
+      "username": true
     }
   },
   "hidden": ["password"],
