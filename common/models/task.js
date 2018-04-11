@@ -27,6 +27,18 @@ module.exports = function(Task) {
         next();
     });
 
+    //see https://loopback.io/doc/en/lb3/Operation-hooks.html#before-delete
+    Task.observe('before delete', function checkStatus(ctx, next) {
+        var taskId = ctx.where.id;
+        Task.findById(taskId, function (err, task) {
+            if(task && 'ON QUEUE' !== task.status){
+                var error = new Error("Cannot remove task that is already: "+task.status);
+                error.statusCode = 422;
+                next(error);
+            }else next();
+        });
+    });
+
     /**
      * Registering custom endpoints (in loopback: remote methods)
      * 
